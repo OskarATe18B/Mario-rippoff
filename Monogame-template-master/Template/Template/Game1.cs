@@ -14,7 +14,7 @@ namespace Template
         Texture2D ground;
         Texture2D Mario;
         Texture2D Goomba;
-        Vector2 playerpos;
+        Vector2 Pos = new Vector2(100, 300);
         Vector2 groundpos;
 
         //KOmentar
@@ -70,6 +70,13 @@ namespace Template
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            KeyboardState kstate= Keyboard.GetState();
+            if (kstate.IsKeyDown(Keys.Space))
+                if(Pos.Y >=100)
+                    Pos.Y = Pos.Y-10;
+            if (Pos.Y <= 300)
+                Pos.Y = Pos.Y+5;
+            
 
             // TODO: Add your update logic here
 
@@ -85,7 +92,7 @@ namespace Template
             GraphicsDevice.Clear(Color.DeepSkyBlue);
 
             spriteBatch.Begin();
-            spriteBatch.Draw(ground, new Rectangle (playerpos.ToPoint(), new Point(50,50)), Color.White);
+            spriteBatch.Draw(Mario, new Rectangle (Pos.ToPoint(), new Point(50,50)), Color.White);
           
 
             spriteBatch.End();
